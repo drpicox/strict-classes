@@ -1,0 +1,33 @@
+{
+  "name": "strict-classes",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "module": "dist/strict-classes.esm.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.8.3"
+  },
+  "devDependencies": {
+    "kcd-scripts": "^4.1.0",
+    "npm-run-all": "^4.1.5"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "npm-run-all --parallel build:main build:bundle:main",
+    "build:main": "kcd-scripts build --no-clean",
+    "build:bundle:main": "kcd-scripts build --bundle --no-clean",
+    "lint": "kcd-scripts lint",
+    "test": "kcd-scripts test",
+    "test:update": "npm test -- --updateSnapshot --coverage",
+    "validate": "kcd-scripts validate",
+    "setup": "npm install && npm run validate -s"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "kcd-scripts pre-commit"
+    }
+  }
+}
